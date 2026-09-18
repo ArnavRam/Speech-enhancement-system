@@ -15,10 +15,6 @@ slprj/
 Thumbs.db
 .vscode/
 
-# Claude / AI development files
-.claude/
-CLAUDE.md
-
 # Temporary/generated outputs
 assets/out/
 
