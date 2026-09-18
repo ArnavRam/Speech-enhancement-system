@@ -1,0 +1,30 @@
+# MATLAB
+*.asv
+*.m~
+*.autosave
+
+# MATLAB generated files
+slprj/
+*.slxc
+*.mexw64
+*.mexw32
+*.mexglx
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Claude / AI development files
+.claude/
+CLAUDE.md
+
+# Temporary/generated outputs
+assets/out/
+
+# Large audio/data files
+*.mp3
+*.flac
+
+# MATLAB temporary files
+*.log
