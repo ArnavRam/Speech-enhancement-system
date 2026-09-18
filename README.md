@@ -1,4 +1,4 @@
-#Speech Enhancement Toolkit (MATLAB)
+# Speech Enhancement Toolkit (MATLAB)
 
 Single-channel speech-enhancement mini-project for a 3rd-year DSP course.
 Records or loads a noisy speech signal and produces a cleaner version using
