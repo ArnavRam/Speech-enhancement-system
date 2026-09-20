@@ -17,6 +17,7 @@ Thumbs.db
 
 # Temporary/generated outputs
 assets/out/
+results/
 
 # Large audio/data files
 *.mp3

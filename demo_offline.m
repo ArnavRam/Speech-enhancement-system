@@ -51,7 +51,7 @@ fprintf('\n--- Spectral Subtraction (Berouti) ---\n');
 printMetrics(mS);
 
 % Save outputs so you can compare them by ear
-outDir = fullfile('assets', 'out');
+outDir = fullfile('results', 'offline');
 if ~isfolder(outDir), mkdir(outDir); end
 audiowrite(fullfile(outDir, 'noisy.wav'),    normalizeAudio(noisy),   fs);
 audiowrite(fullfile(outDir, 'wiener.wav'),   normalizeAudio(yWiener), fs);

@@ -1,5 +1,5 @@
 classdef SpeechEnhancerApp < handle
-%SPEECHENHANCERAPP  Atlas - Speech Enhancement Toolkit (MATLAB R2021a+).
+%SPEECHENHANCERAPP  Speech Enhancement Toolkit (MATLAB R2021a+).
 %   Simple, demo-first UI. Two tabs:
 %     * Enhance         - record / load / enhance / compare / save
 %     * LMS Comparison  - secondary adaptive-filter demonstration
@@ -118,7 +118,7 @@ classdef SpeechEnhancerApp < handle
     methods (Access = private)
         function buildUI(app)
             app.UIFigure = uifigure( ...
-                'Name', 'Atlas - Speech Enhancement Toolkit', ...
+                'Name', 'Speech Enhancement Toolkit', ...
                 'Position', [80 80 1280 800], ...
                 'Color', app.CLR_BG, ...
                 'CloseRequestFcn', @(~,~) delete(app));
@@ -153,7 +153,7 @@ classdef SpeechEnhancerApp < handle
             hg.BackgroundColor = app.CLR_BG;
 
             app.LblTitle = uilabel(hg, ...
-                'Text', 'Atlas   -   Speech Enhancer', ...
+                'Text', 'Speech Enhancer', ...
                 'FontSize', 22, 'FontWeight', 'bold', ...
                 'FontColor', app.CLR_HEADER);
             app.LblTitle.Layout.Row = 1; app.LblTitle.Layout.Column = 1;
@@ -624,11 +624,15 @@ classdef SpeechEnhancerApp < handle
             play(app.PlayerEnh);
         end
         function onSave(app)
-            [f, p] = uiputfile({'*.wav'}, 'Save enhanced audio', 'enhanced.wav');
+            resultsDir = fullfile(fileparts(mfilename('fullpath')), 'results');
+            if ~isfolder(resultsDir), mkdir(resultsDir); end
+            defaultName = sprintf('enhanced_%s.wav', datestr(now, 'yyyymmdd_HHMMSS'));
+            [f, p] = uiputfile({'*.wav'}, 'Save enhanced audio', ...
+                fullfile(resultsDir, defaultName));
             figure(app.UIFigure);
             if isequal(f, 0), return; end
             audiowrite(fullfile(p, f), app.normalize(app.Enhanced), app.Fs);
-            app.setStatus(sprintf('Saved: %s', fullfile(p, f)));
+            app.setStatus(sprintf('Saved to results folder: %s', fullfile(p, f)));
         end
     end
 

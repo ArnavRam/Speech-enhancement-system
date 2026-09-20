@@ -3,7 +3,7 @@
 %   noise types (white, pink, babble) at 5 dB SNR. Deliberately does NOT
 %   pad silence at the start, so the robust bootstrap is exercised.
 %
-%   Writes assets/out/compare/*.wav and opens 3 comparison figures.
+%   Writes results/compare/*.wav and opens 3 comparison figures.
 %   Prints a metrics table:
 %       inSNR / outSNR-OLD / outSNR-NEW / delta-OLD / delta-NEW / segSNR
 %       + reference-free noise-floor drop on both.
@@ -22,7 +22,7 @@ noiseTypes = {'white', 'pink', 'babble'};
 clean = syntheticSpeech(fs, 4.0);
 clean = clean / (max(abs(clean)) + 1e-9) * 0.8;
 
-outDir = fullfile('assets', 'out', 'compare');
+outDir = fullfile('results', 'compare');
 if ~isfolder(outDir), mkdir(outDir); end
 
 rows = {};

@@ -96,12 +96,14 @@ speak. Press **Stop → Process → Play enhanced**.
 If your mic misbehaves during the presentation, load one of the
 pre-recorded clips in `assets/` instead — the pipeline works identically.
 
-## Files produced by `demo_offline`
+## Where saved files live
 
-Written into `assets/out/`:
-- `noisy.wav`   — clean + injected noise at the chosen SNR.
-- `wiener.wav`  — enhanced with the recommended pipeline.
-- `specsub.wav` — enhanced with Berouti spectral subtraction (compare).
+All generated audio lands under `results/` in the project root (created
+on first use, git-ignored):
+
+- `results/enhanced_<timestamp>.wav` — files saved from the GUI's Save button.
+- `results/offline/{noisy,wiener,specsub}.wav` — output of `demo_offline`.
+- `results/compare/{white,pink,babble}_{noisy,old,new}.wav` — output of `demo_compare`.
 
 Three MATLAB figures also open: waveforms, spectrograms, and the Wiener
 gain surface plus its mean-vs-frequency profile.
