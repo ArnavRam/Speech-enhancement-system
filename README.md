@@ -105,13 +105,3 @@ Written into `assets/out/`:
 
 Three MATLAB figures also open: waveforms, spectrograms, and the Wiener
 gain surface plus its mean-vs-frequency profile.
-
-## What to say about metrics
-
-The GUI shows an **input SNR** / **output SNR** / **SNR improvement** row.
-For live recordings these are marked `n/a` because you have no clean
-reference — this is honest, not a bug. Use the **synthetic test** in
-`demo_offline.m` (which does know the clean signal) to quote hard numbers
-in the report. For live captures, the **noise-floor drop** measured on
-the initial silent segment is the reference-free number to quote — it
-directly reflects what a listener perceives.
