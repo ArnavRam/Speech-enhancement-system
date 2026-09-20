@@ -25,3 +25,11 @@ results/
 
 # MATLAB temporary files
 *.log
+<<<<<<< Updated upstream
+=======
+
+results/
+
+docs/SpeechEnhancer_Project_Report.docx
+docs/SpeechEnhancer_Project_Report.pdf
+>>>>>>> Stashed changes
