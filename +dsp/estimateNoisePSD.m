@@ -46,7 +46,7 @@ function [noisePSD, sppOut] = estimateNoisePSD(magSq, fs, hopLen, opts)
     framesPerSec = fs / hopLen;
 
     % ---- Robust per-bin bootstrap -----------------------------------------
-    bootWin = max(3, min(numFrames, round(opts.bootstrapSec * framesPerSec)));
+    bootWin = min(numFrames, max(3, round(opts.bootstrapSec * framesPerSec)));
     q       = min(max(opts.bootstrapQuantile, 0.05), 0.5);
     if bootWin >= 5
         initPSD = quantile(magSq(:, 1:bootWin), q, 2);
