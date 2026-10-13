@@ -50,7 +50,7 @@ plot.
 ## Project layout
 
 ```
-SpeechEnhancer/
+Speech-enhancement-system/
 ├── +dsp/
 │   ├── stftAnalyze.m         analysis STFT
 │   ├── istftSynthesize.m     synthesis ISTFT (weighted OLA)
@@ -66,20 +66,31 @@ SpeechEnhancer/
 ├── SpeechEnhancerApp.m       programmatic uifigure app
 ├── demo_offline.m            headless test / demo backup
 ├── demo_compare.m            A/B/C - noisy vs old vs new pipeline
-├── assets/                   optional clean sample + generated outputs
 └── docs/
-    └── report_outline.md     report + viva talking points
+    ├── SpeechEnhancer_Project_Report.pdf   project report
+    └── SpeechEnhancer_Project_Report.docx  editable source of the report
 ```
+
+Not in the repository:
+
+- `assets/sample_clean.wav` — optional. If you add a clean speech
+  recording here, `demo_offline` uses it instead of its built-in
+  synthetic signal.
+- `results/` — generated output, created on first use and git-ignored
+  (see below).
 
 ## Requirements
 
-- MATLAB R2021a or later.
-- Signal Processing Toolbox (for `butter`, `fir1`, `resample`, `hann`).
+- MATLAB with the Signal Processing Toolbox (for `butter`, `fir1`,
+  `resample`, `hann`). The code targets R2021a or later; it has been
+  run on R2025b, and older releases have not been re-verified.
 - Audio recording uses `audiorecorder` (no Audio Toolbox needed).
 
 ## How to run
 
-From the SpeechEnhancer project root:
+Set MATLAB's current folder to the repository root (the folder that
+contains `SpeechEnhancerApp.m`), so the `+dsp` and `+senh` packages are
+found:
 
 ```matlab
 % Headless demo (recommended smoke test first):
@@ -91,19 +102,21 @@ From the SpeechEnhancer project root:
 
 **Live demo tip.** In the GUI, press **Record**, stay silent for about
 half a second (so the noise bootstrap has clean noise-only data), then
-speak. Press **Stop → Process → Play enhanced**.
+speak. Press **Stop → ENHANCE → Play enhanced**.
 
-If your mic misbehaves during the presentation, load one of the
-pre-recorded clips in `assets/` instead — the pipeline works identically.
+If your mic misbehaves during the presentation, press **Load audio** and
+pick any WAV, FLAC, MP3 or OGG file instead — the pipeline works
+identically. No audio clips are shipped with the repository.
 
 ## Where saved files live
 
 All generated audio lands under `results/` in the project root (created
 on first use, git-ignored):
 
-- `results/enhanced_<timestamp>.wav` — files saved from the GUI's Save button.
+- `results/enhanced_<timestamp>.wav` — default name and folder offered by
+  the GUI's **Save enhanced** button.
 - `results/offline/{noisy,wiener,specsub}.wav` — output of `demo_offline`.
 - `results/compare/{white,pink,babble}_{noisy,old,new}.wav` — output of `demo_compare`.
 
-Three MATLAB figures also open: waveforms, spectrograms, and the Wiener
-gain surface plus its mean-vs-frequency profile.
+`demo_offline` also opens three MATLAB figures: waveforms, spectrograms,
+and the Wiener gain surface plus its mean-vs-frequency profile.

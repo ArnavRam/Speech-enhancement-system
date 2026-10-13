@@ -2,7 +2,8 @@ function [y, info] = enhanceSpeech(x, fs, opts)
 %ENHANCESPEECH  Top-level single-channel speech enhancement pipeline.
 %   [y, info] = enhanceSpeech(x, fs, opts) resamples to 16 kHz mono,
 %   applies pre-emphasis, computes an STFT with 32 ms Hann frames at 50%
-%   overlap, estimates noise PSD (bootstrap + minimum statistics), applies
+%   overlap, estimates noise PSD (percentile bootstrap + speech-presence-
+%   probability tracking, see estimateNoisePSD), applies
 %   the selected magnitude gain (Wiener or spectral subtraction) while
 %   preserving noisy phase, reconstructs by weighted overlap-add, and
 %   undoes the pre-emphasis. info contains intermediate quantities for
