@@ -45,7 +45,7 @@ opts2 = struct('algorithm', 'specsub');
 mW = senh.computeMetrics(clean, noisy, yWiener, fs);
 mS = senh.computeMetrics(clean, noisy, ySS,     fs);
 
-fprintf('\n--- Wiener (DD + MinStats) ---\n');
+fprintf('\n--- Wiener (DD + SPP noise estimate) ---\n');
 printMetrics(mW);
 fprintf('\n--- Spectral Subtraction (Berouti) ---\n');
 printMetrics(mS);
@@ -87,7 +87,8 @@ plot(fVec, mean(20*log10(infoW.G + 1e-6), 2), 'LineWidth', 1.5);
 grid on; xlim([0 fs/2]); xlabel('frequency (Hz)'); ylabel('mean gain (dB)');
 title('Mean Wiener gain vs frequency');
 
-fprintf('\nDone. Play out\\noisy.wav then out\\wiener.wav to compare.\n');
+fprintf('\nDone. Play %s then %s to compare.\n', ...
+    fullfile(outDir, 'noisy.wav'), fullfile(outDir, 'wiener.wav'));
 
 % ============================== helpers ====================================
 function printMetrics(m)
